@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hallie's Information</title>
+    <style>
+        body {
+            font-family: Helvetica, Open Sans, Noto, Roboto, Segoe UI;
+            margin: auto;
+            height: 100%;
+            padding: 5% 5%;
+            background-color: #000;
+            transition: background-color 0.3s, color 0.3s;
+            background-image: url('HomeLight.png');     
+            transition: background-image 0.3s;
+            
+        }
+        @media (max-width: 800px) {
+        body {
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+
+        }
+        }
+        .tabs {
+            display: flex;
+            position: sticky;
+            z-index: 100;
+            top: 0;
+            padding: 2% auto;
+            justify-content: space-evenly;
+            margin: auto;
+            /* max-width: 800px; */
+            background-color: transparent;
+            gap: 20px;
+            border-radius: 14px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .tabs-bottom {
+            display: flex;
+            flex: 1;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            justify-content: space-between;
+            margin: auto;
+            background-color: transparent;
+            padding: 10% 5%;
+            gap: 0 5%;
+            /* max-width: 800px; */
+            border-radius: 14px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .tab-links {
+            display: flex;
+            flex: 1;
+            min-width: 90%;
+            /* max-width: 800px; */
+            justify-content: space-between;
+            gap: 20px;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .tabs a {
+            flex: 1;
+            padding: 10px 10px;
+            border-radius: 14px;
+            background-color: #e5e5eab1;
+            display: block;
+            color: #ffffff;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .tabs a:hover {
+            
+            color: white;
+            font-weight: bold;
+            padding: 10px 10px;
+            border-radius: 14px;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+            transform: scale(1.05);
+            
+        }
+        .tabs a.active {
+            background-color: #34c85b80;
+            color: white;
+            font-weight: bold;
+            border-radius: 14px;
+            padding: 10px 10px;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .tabs-bottom a {
+            flex: 1;
+            padding: 10px 10px;
+            border-radius: 14px;
+            background-color: #e5e5eab1;
+            display: block;
+            color: #ffffff;
+            text-align: center;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .tabs-bottom a:hover {
+            
+            color: white;
+            font-weight: bold;
+            padding: 10px 10px;
+            border-radius: 14px;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+            transform: scale(1.05);
+            
+        }
+        .toggle-button {
+            border-radius: 14px;
+            cursor: pointer;
+            background-color: #e5e5eab1;
+            border: none;
+            outline: none;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+            min-width: 5em;
+            
+        }
+
+        .toggle-button:hover {
+            transform: scale(1.05);
+            background-color: #8e8e93;
+        }
+
+        .content {
+            color: black;
+            background-color: #e5e5eab1;
+            border-radius: 14px;
+            transition: background-color 0.3s, color 0.3s;
+            margin: 1em auto;
+            display: flex;
+            flex-grow: 1;
+            text-align: left;
+            align-items: center;
+            text-wrap: nowrap;
+            justify-content: left;
+            padding: 0 1em;
+            word-break: break-word;
+            overflow-wrap: break-word;
+            white-space: normal;
+        }
+        .content a {
+            text-decoration: none;
+            color: #0079fc;
+        }
+        .personal-content br {
+            margin-left: 20px;
+        }
+        .page {
+            display: none;
+        }
+        /* CSS for the SVG */
+        .svg-text {
+                fill: #000;
+                font-size: 16px;
+                font-family: Arial, sans-serif;
+        }
+
+        /* Media query for small screens */
+        @media (max-width: 400px) {
+        .tab-links a {
+                font-size: 0;
+            }
+
+        .tab-links a::before {
+                content: '';
+                display: inline-block;
+                width: 24px;
+                height: 24px;
+                background-size: contain;
+                background-repeat: no-repeat;
+                vertical-align: middle;
+                
+            }
+
+            /* Define different SVG images for each tab */
+        .tab-links a[href="#Personal"]::before {
+                background-image: url('personal.svg');
+            }
+
+        .tab-links a[href="#Contacts"]::before {
+                background-image: url('contacts.svg');
+            }
+
+        .tab-links a[href="#Resources"]::before {
+                background-image: url('resources.svg');
+            }
+        }
+        /* Dark Mode Styles */
+        body.dark-mode {
+            color: #f0f0f0;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('HomeLight.png');
+        }
+        .tabs.dark-mode {
+            background-color: transparent;
+            color: white;
+        }
+        .tabs a.dark-mode {
+            background-color: #1c1c1e;
+            color: white;
+        }
+        .tabs a.dark-mode:hover {
+            background-color: #38373c;
+            color: white;
+        }
+        .tabs a.dark-mode.active {
+            background-color: #4cd96450;
+        }
+        .toggle-button.dark-mode {
+            background-color: #1c1c1e;
+        }
+        .toggle-button.dark-mode:hover {
+            background-color: #38373c;
+        }
+        .content.dark-mode {
+            background-color: #1c1c1e;
+            color: #f0f0f0;
+        }
+        .content a.dark-mode {
+            color: #0083fc
+        }
+        /* .tabs-bottom.dark-mode {
+            background-color: #000;
+            color: #000;
+        } */
+        .tabs-bottom a.dark-mode {
+            background-color: #1c1c1e;
+            color: #000;
+        }
+        .personal-content.dark-mode {
+            background-color: #1c1c1e;
+            color: #f0f0f0;
+        }
+        .tab-links a.dark-mode[href="#Personal"]::before {
+            background-image: url('personal-white.svg');
+        }
+
+        .tab-links a.dark-mode[href="#Contacts"]::before {
+            background-image: url('contacts-white.svg');
+        }
+
+        .tab-links a.dark-mode[href="#Resources"]::before {
+            background-image: url('resources-white.svg');
+        }
+    </style>
+    <script>
+        
+        
+        
+        function showPage(pageId) {
+            var tabs = document.querySelectorAll('.tabs a');
+            var pages = document.querySelectorAll('.page');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            pages.forEach(page => page.style.display = 'none');
+            document.getElementById(pageId).style.display = 'block';
+            document.querySelector('[href="#' + pageId + '"]').classList.add('active');
+        }
+
+        function applyDarkMode(isDark) { //The order in which this function is applied matters. This order MUST be top down in the webpage.
+            document.body.classList.toggle('dark-mode', isDark);
+            // Top Tabs
+            document.querySelector('.tabs').classList.toggle('dark-mode', isDark);
+            document.querySelectorAll('.tabs a').forEach(a => a.classList.toggle('dark-mode', isDark));
+            // Dark-mode Toggle
+            const toggleButton = document.querySelector('.toggle-button');
+            toggleButton.classList.toggle('dark-mode', isDark);
+            toggleButton.textContent = isDark ? '🌞' : '🌛'; // Update button text based on dark mode state
+            // Content
+            document.querySelector('.content a').classList.toggle('dark-mode', isDark);
+            document.querySelectorAll('.content').forEach(content => {content.classList.toggle('dark-mode', isDark);});
+            // Bottom Tabs
+            document.querySelector('.tabs-bottom').classList.toggle('dark-mode', isDark);
+            document.querySelectorAll('.tabs-bottom a').forEach(a => a.classList.toggle('dark-mode', isDark));
+            
+            // Maintain dark-mode across all tabs
+            localStorage.setItem('darkMode', isDark);
+
+        }
+
+        function toggleDarkMode() {
+            var isDark = document.body.classList.contains('dark-mode');
+            applyDarkMode(!isDark);
+        }
+        function goToPersonal() {
+            window.location.href = '#Personal';
+            showpage('Personal') // Replace 'Personal' with the ID of your first page
+        }
+        
+
+        // Add event listener to the button
+        document.getElementById('openMap').addEventListener('click', openMap);
+        
+        window.onload = function() {
+            goToPeronal();
+            var hour = new Date().getHours();
+            var isDarkMode = localStorage.getItem('darkMode') === 'true' || (hour >= 19 || hour < 7);
+            applyDarkMode(isDarkMode);
+
+            // Calculate the width of each tab-bottom child and set the width and height of the tabs-bottom
+            var tabBottom = document.querySelector('.tabs-bottom');
+            var tabBottomChildren = tabBottom.querySelectorAll('a');
+            var tabBottomWidth = Math.max(...Array.from(tabBottomChildren).map(child => child.offsetWidth));
+            tabBottomChildren.forEach(child => {
+                child.style.width = tabBottomWidth + 'px';
+                child.style.height = tabBottomWidth + 'px';
+            });
+        }
+               
+    </script>
+</head>
+<body>
+    <div class="tabs">
+        <div class="tab-links">
+            <a href="#Personal" onclick="showPage('Personal')">Personal</a>
+            <a href="#Contacts" onclick="showPage('Contacts')">Contacts</a>
+            <a href="#Resources" onclick="showPage('Resources')">Resources</a>
+            <button class="toggle-button" onclick="toggleDarkMode()">🌛</button>
+        </div>
+    </div>
+    <div id="Personal" class="page">
+        <div class="content">
+            <p><sub>Name</sub><br>Shanae <b>Stona</b></p>
+        </div>
+        <div class="content">
+            <p><sub>Birthday</sub><br>June 24, 2004</p>
+        </div>
+        <div class="content">
+            <p><sub>Telephone</sub><br><a href="tel:+16479932904" target="_blank">+1 (647) 993-2904</a></p>
+        </div>
+        <div class="content">
+            <p><sub>E-Mail</sub><br><a href="mailto:stonashanaes20@gmail.com" target="_blank">stonashanaes20@gmail.com</a></p>
+        </div>
+    </div>    
+    
+    <div id="Contacts" class="page">
+        <div class="content">
+            <p><sub>Partner</sub><br>
+            Damian <b>Mattatall</b><br>
+            <a href="tel:+19054010749" target="_blank">+1 (905) 401-0749</a></p>
+        </div>
+        <div class="content">
+            <p><sub>Mother</sub><br>
+                Merline <b>Stona</b><br>
+                <a href="tel:+16472207093" target="_blank">+1 (647) 220-7093</a></p>
+        </div>
+        <div class="content">
+            <p><sub>Brother</sub><br>
+                Simeon <b>Stona</b><br>
+                <a href="tel:+13658808672" target="_blank">+1 (365) 880-8672</a></p>
+        </div>
+        <div class="content">
+            <p><sub>Brother</sub><br>
+                Shunnar <b>Stona</b><br>
+                <a href="tel:+12899528970" target="_blank">+1 (289) 952-8970</a></p>
+            </div>
+    </div>
+        <div id="Resources" class="page">
+            <div class="content">
+                <p><b><a href="https://www.fsrao.ca/media/5671/download" target="_blank">Vehicle Accident Form</a></b></p>
+            </div>
+            <div class="content">
+                <p><b><a href="https://www.fsrao.ca/consumers/auto-insurance/protect-yourself/what-do-after-accident" target="_blank">FSRAO: What to do after an accident</a></b></p>
+            </div>
+            <div class="content">
+                <p><b><a href="https://www.cleo.on.ca/en/publications/polpower" target="_blank">Police Powers: Stops and Searches</a></b></p>
+            </div>
+            <div class="content">
+                <p><b><a href="https://www.cleo.on.ca/en" target="_blank">CLEO (Community Legal Education Ontario)</a></b></p>
+            </div>
+            <div class="content">
+                <p><b><a href="https://stepstojustice.ca/legal-topic/criminal-law/" target="_blank">Steps To Justice: Criminal Law</a></b></p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
